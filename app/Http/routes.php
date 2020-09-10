@@ -1,7 +1,7 @@
 <?php
-if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
-    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-}
+//if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
+//    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+//}
 
 use App\Country;
 use App\Post;
@@ -22,4 +22,9 @@ use App\User;
 //    return view('welcome');
 //});
 
-Route::resource('posts', 'PostsController');
+
+Route::group(['middleware'=>'web'], function(){
+
+    Route::resource('posts', 'PostsController');
+
+});
