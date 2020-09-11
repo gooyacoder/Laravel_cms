@@ -14,4 +14,12 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function scopeDescending($query){
+        return $query->latest()->get();
+    }
+
+    public function scopeAscending($query){
+        return $query->get();
+    }
 }

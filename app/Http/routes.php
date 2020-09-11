@@ -6,6 +6,7 @@
 use App\Country;
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,20 @@ use App\User;
 Route::group(['middleware'=>'web'], function(){
 
     Route::resource('posts', 'PostsController');
+
+    Route::get('/dates', function(){
+        echo Carbon::now()->weekOfYear;
+    });
+
+    Route::get('/getname', function(){
+        $user = User::find(1);
+        echo $user->name;
+    });
+
+    Route::get('/setname', function(){
+        $user = User::find(1);
+        $user->name = "web coder";
+        $user->save();
+    });
 
 });
