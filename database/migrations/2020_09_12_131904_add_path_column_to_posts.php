@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnDeletedAtToPostsTable extends Migration
+class AddPathColumnToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +14,7 @@ class AddColumnDeletedAtToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->softDeletes();
+            $table->string('path');
         });
     }
 
@@ -25,7 +26,7 @@ class AddColumnDeletedAtToPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
+            $table->dropColumn('path');
         });
     }
 }

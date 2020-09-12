@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    public $dirctory = "/images/";
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'path'];
 
     public function user(){
         return $this->belongsTo('App\User');
@@ -21,5 +22,9 @@ class Post extends Model
 
     public function scopeAscending($query){
         return $query->get();
+    }
+
+    public function getPathAttribute($value){
+        return $this->dirctory . $value;
     }
 }
